@@ -19,12 +19,7 @@ jobs:
 
     - name: Push to ECR
       env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-    - name: Log out of ECR
-      if: always()
-      run: docker logout ${{ steps.login-ecr.outputs.registry }}
+        docker build -t 805793814448.dkr.ecr.eu-west-1.amazonaws.com/useless:$IMAGE_TAG .
+        docker push 805793814448.dkr.ecr.eu-west-1.amazonaws.com/useless:$IMAGE_TAG .
