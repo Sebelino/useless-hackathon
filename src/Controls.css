@@ -1,0 +1,25 @@
+.Controls__title {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.Controls__section {
+    margin-bottom: 20px;
+}
+
+.RadioButton {
+    margin: 0 10px;
+}
+
+.RandomValueControl__title {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.RandomValueControl__value {
+    margin-bottom: 5px;
+}
+
+.RandomValueControl__button {
+    margin-right: 10px;
+}
