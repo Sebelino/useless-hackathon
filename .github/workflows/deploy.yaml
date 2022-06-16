@@ -4,9 +4,13 @@ jobs:
   check-bats-version:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - run: docker build --tag useless:v1 .
+      - name: Push to ECR
+        id: ecr
+        uses: jwalton/gh-ecr-push@v1
         with:
-          node-version: '14'
-      - run: npm install -g bats
-      - run: bats -v
+          access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          region: eu-west-1
+          local-image: useless:v1
+          image: useless:v1, useless:latest
