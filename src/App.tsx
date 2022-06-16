@@ -4,7 +4,13 @@ import Controls from './Controls';
 import { Calculator } from './features/calculator';
 import { Timer } from './features/timer';
 
+enum AppState {
+  Idle = 'IDLE',
+  Spinning = 'SPINNING',
+}
+
 const App = () => {
+  const [appState, setAppState] = useState(AppState.Idle);
   const [mode, setMode] = useState(0);
   const [speed, setSpeed] = useState(0);
 
@@ -19,7 +25,7 @@ const App = () => {
       <div className="App__column">
         <Calculator mode={mode} speed={speed} />
 
-        <Timer />
+        <Timer mode={mode} speed={speed} />
       </div>
     </div>
   );

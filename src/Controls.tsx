@@ -2,6 +2,8 @@ import React, { useCallback, useState } from 'react';
 import random from 'lodash/random';
 import './Controls.css';
 
+const getRandomValue = (value: number) => value * random(1, 5);
+
 enum ControlState {
   Idle = 'IDLE',
   Requested = 'REQUESTED',
@@ -56,7 +58,7 @@ const RandomValueControl: React.FC<RandomValueControlProps> = ({
       return;
     }
 
-    onSubmit(value);
+    onSubmit(getRandomValue(value));
   }, [onSubmit, value, isSubmitActive]);
 
   return (

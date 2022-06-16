@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { formatAmount } from '../../utils/formatter';
 import { StopButton } from './StopButton';
 
@@ -6,12 +6,25 @@ const onPay = () => {
   alert('Not working');
 };
 
-export const Timer = () => {
-  const [modeCost] = useState(6);
-  const [speedCost] = useState(8);
+interface TimerProps {
+  mode: number;
+  speed: number;
+}
+
+export const Timer: React.FC<TimerProps> = ({ mode, speed }) => {
+  const [modeCost, setModeCost] = useState(mode);
+  const [speedCost, setSpeedCost] = useState(speed);
   const [runningSeconds, setRunningSeconds] = useState(0);
   const [isWashing, setIsWashing] = useState(false);
   const totalAmount = runningSeconds * modeCost * speedCost;
+
+  useEffect(() => {
+    setModeCost(mode);
+  }, [mode]);
+
+  useEffect(() => {
+    setSpeedCost(speed);
+  }, [speed]);
 
   useEffect(() => {
     if (!isWashing) {
