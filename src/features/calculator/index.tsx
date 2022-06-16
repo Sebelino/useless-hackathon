@@ -1,4 +1,4 @@
-import { KeyboardEvent, useState } from 'react';
+import React, { KeyboardEvent, useEffect, useState } from 'react';
 import { formatAmount } from '../../utils/formatter';
 
 const onKeyDown = (evt: KeyboardEvent<HTMLInputElement>) => {
@@ -10,10 +10,23 @@ const onKeyDown = (evt: KeyboardEvent<HTMLInputElement>) => {
   alert("Don't be lazy, put in those numbers! 💪");
 };
 
-export const Calculator = () => {
+interface CalculatorProps {
+  mode: number;
+  speed: number;
+}
+
+export const Calculator: React.FC<CalculatorProps> = ({ mode, speed }) => {
   const [time, setTime] = useState(0);
-  const [modeCost] = useState(6);
-  const [speedCost] = useState(8);
+  const [modeCost, setModeCost] = useState(mode);
+  const [speedCost, setSpeedCost] = useState(speed);
+
+  useEffect(() => {
+    setModeCost(mode);
+  }, [mode]);
+
+  useEffect(() => {
+    setSpeedCost(speed);
+  }, [speed]);
 
   return (
     <section

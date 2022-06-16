@@ -17,7 +17,7 @@ const App = () => {
       <div className="App__column">Here goes something</div>
 
       <div className="App__column">
-        <Calculator />
+        <Calculator mode={mode} speed={speed} />
 
         <Timer />
       </div>

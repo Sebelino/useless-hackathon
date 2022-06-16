@@ -91,7 +91,17 @@ const Controls: React.FC<ControlsProps> = ({ onChangeMode, onChangeSpeed }) => {
       </div>
 
       <div className="Controls__section">
-        <RandomValueControl title="Speed" min={1} max={1000} onSubmit={onChangeSpeed} isSubmitActive={false} />
+        <RandomValueControl title="Speed, 🏎️" min={1} max={1000} onSubmit={onChangeSpeed} />
+      </div>
+
+      <div className="Controls__section">
+        <RandomValueControl
+          title="Temperature, 🥵"
+          min={-900}
+          max={500}
+          onSubmit={console.log}
+          isSubmitActive={false}
+        />
       </div>
     </div>
   );
