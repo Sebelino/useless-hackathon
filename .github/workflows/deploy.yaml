@@ -24,4 +24,4 @@ jobs:
         IMAGE_TAG: ${{ github.sha }}
       run: |
         docker build -t 805793814448.dkr.ecr.eu-west-1.amazonaws.com/useless:$IMAGE_TAG .
-        docker push 805793814448.dkr.ecr.eu-west-1.amazonaws.com/useless:$IMAGE_TAG .
+        docker push 805793814448.dkr.ecr.eu-west-1.amazonaws.com/useless:$IMAGE_TAG
