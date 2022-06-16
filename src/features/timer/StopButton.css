@@ -1,0 +1,12 @@
+#stop-washing {
+  opacity: 1;
+}
+
+#stop-washing.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+#stop-washing.invisible {
+  opacity: 0;
+}
