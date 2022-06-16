@@ -1,4 +1,5 @@
 import React, { KeyboardEvent, useEffect, useState } from 'react';
+import random from 'lodash/random';
 import { formatAmount } from '../../utils/formatter';
 
 const onKeyDown = (evt: KeyboardEvent<HTMLInputElement>) => {
@@ -10,6 +11,8 @@ const onKeyDown = (evt: KeyboardEvent<HTMLInputElement>) => {
   alert("Don't be lazy, put in those numbers! 💪");
 };
 
+const getRandomValue = (value: number) => value * random(1, 5);
+
 interface CalculatorProps {
   mode: number;
   speed: number;
@@ -17,15 +20,15 @@ interface CalculatorProps {
 
 export const Calculator: React.FC<CalculatorProps> = ({ mode, speed }) => {
   const [time, setTime] = useState(0);
-  const [modeCost, setModeCost] = useState(mode);
-  const [speedCost, setSpeedCost] = useState(speed);
+  const [modeCost, setModeCost] = useState(getRandomValue(mode));
+  const [speedCost, setSpeedCost] = useState(getRandomValue(speed));
 
   useEffect(() => {
-    setModeCost(mode);
+    setModeCost(getRandomValue(mode));
   }, [mode]);
 
   useEffect(() => {
-    setSpeedCost(speed);
+    setSpeedCost(getRandomValue(speed));
   }, [speed]);
 
   return (
