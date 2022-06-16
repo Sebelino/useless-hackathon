@@ -78,21 +78,6 @@ const RandomValueControl: React.FC<RandomValueControlProps> = ({
   );
 };
 
-interface RadioButtonProps {
-  label: string;
-  value: string;
-  name: string;
-}
-
-const RadioButton: React.FC<RadioButtonProps> = ({ label, name, value }) => {
-  return (
-    <label className="RadioButton">
-      <input type="radio" name={name} value={value} />
-      {label}
-    </label>
-  );
-};
-
 const Controls = () => {
   return (
     <div className="Controls">
