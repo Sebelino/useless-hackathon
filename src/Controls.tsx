@@ -78,15 +78,20 @@ const RandomValueControl: React.FC<RandomValueControlProps> = ({
   );
 };
 
-const Controls = () => {
+interface ControlsProps {
+  onChangeMode: (mode: number) => void;
+  onChangeSpeed: (speed: number) => void;
+}
+
+const Controls: React.FC<ControlsProps> = ({ onChangeMode, onChangeSpeed }) => {
   return (
     <div className="Controls">
       <div className="Controls__section">
-        <RandomValueControl title="Mode" min={1} max={5} onSubmit={console.log} />
+        <RandomValueControl title="Mode" min={1} max={5} onSubmit={onChangeMode} />
       </div>
 
       <div className="Controls__section">
-        <RandomValueControl title="Speed" min={1} max={1000} onSubmit={console.log} isSubmitActive={false} />
+        <RandomValueControl title="Speed" min={1} max={1000} onSubmit={onChangeSpeed} isSubmitActive={false} />
       </div>
     </div>
   );
