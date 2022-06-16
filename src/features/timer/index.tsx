@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { formatAmount } from '../../utils/formatter';
 import { StopButton } from './StopButton';
 
@@ -9,14 +9,28 @@ const onPay = () => {
 interface TimerProps {
   mode: number;
   speed: number;
+  onStart: () => void;
+  onStop: () => void;
 }
 
-export const Timer: React.FC<TimerProps> = ({ mode, speed }) => {
+export const Timer: React.FC<TimerProps> = ({ mode, speed, onStart, onStop }) => {
   const [modeCost, setModeCost] = useState(mode);
   const [speedCost, setSpeedCost] = useState(speed);
   const [runningSeconds, setRunningSeconds] = useState(0);
   const [isWashing, setIsWashing] = useState(false);
   const totalAmount = runningSeconds * modeCost * speedCost;
+
+  const onWash = useCallback(() => {
+    setIsWashing(true);
+
+    onStart();
+  }, [onStart]);
+
+  const onStopWash = useCallback(() => {
+    setIsWashing(false);
+
+    onStop();
+  }, [onStop]);
 
   useEffect(() => {
     setModeCost(mode);
@@ -41,11 +55,11 @@ export const Timer: React.FC<TimerProps> = ({ mode, speed }) => {
   return (
     <section>
       {!isWashing ? (
-        <button onClick={() => setIsWashing(true)}>Start washing!</button>
+        <button onClick={onWash}>Start washing!</button>
       ) : (
         <div>
           <p>Wait while we wash your shit! 🕒</p>
-          <StopButton onStop={() => setIsWashing(false)} />
+          <StopButton onStop={onStopWash} />
         </div>
       )}
 
